@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pizzeria.Models
 {
-    public class User : IdentityUser
+    public class User
     {
         [Key]
         public string IDUser { get; set; }
@@ -12,7 +12,6 @@ namespace Pizzeria.Models
         public string UserEmail { get; set; }
         public string UserPhone { get; set; }
         public string UserPassword { get; set; }
-
         public string GetUserEmails()
         {
             return this.UserEmail;

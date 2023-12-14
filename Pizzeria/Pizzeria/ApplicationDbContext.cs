@@ -10,5 +10,7 @@ namespace Pizzeria
         public DbSet<User> Users { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<Sauce> Sauces { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<Filling> Fillings { get; set; }
     }
 }

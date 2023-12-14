@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Worker>
+@{
+    ViewData["Title"] = "Worker";
+}
+
+
+<form method="post" asp-controller="Workers" asp-action="DeleteWorker">
+    <table class ="tabel-work" style="width:100%">
+        <thead class="thead-work">
+            <tr>
+                <th class="th-worker">
+                    Name
+                </th>
+                <th class="th-worker">
+                    Surname
+                </th>
+                <th class="th-worker">
+                    Post
+                </th>
+                <th class="th-worker">
+                    E-mail
+                </th>
+                <th class="th-worker">
+                    Phone
+                </th> 
+                <th>
+                    <button class="form-button-reg" asp-area="" asp-controller="Registration" type="submit">Add</button>
+                </th>
+            </tr>
+        </thead>
+            <tbody>
+                @foreach(var obj in Model)
+            {
+                <tr>
+                    <td class="td-worker">
+                        @obj.WorkerName
+                    </td>
+                    <td class="td-worker">
+                        @obj.WorkerSurname
+                    </td>
+                    <td class="td-worker">
+                        @obj.WorkerPost
+                    </td>
+                    <td class="td-worker">
+                        @obj.WorkerEmail
+                    </td>
+                    <td class="td-worker">
+                        @obj.WorkerPhone
+                    </td>
+                    <td>
+
+                        <button class="form-button-reg" name="workerId" type="submit" value="@obj.IDWorker">Delete</button>
+                        
+                       
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+        
+    </form>
+
+
+                    <script>
+    function deleteWorker(workerId) {
+        if (confirm('Are you sure you want to delete this worker?')) {
+            fetch('@Url.Action("Delete", "Workers")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'workerId=' + encodeURIComponent(workerId),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Обработайте успешное удаление здесь
+                        alert('Worker deleted successfully');
+                        // Если нужно обновить данные на странице, добавьте соответствующий код
+                    } else {
+                        // Обработайте ошибку удаления здесь
+                        alert('Failed to delete worker');
+                    }
+                });
+        }
+    }
+</script>

@@ -10,9 +10,6 @@ namespace Pizzeria.Models
         public double PizzaPrice { get; set; }
         public string PizzaImage { get; set; }
         public string IDSauce { get; set; }
-        public bool Mozzarella { get; set; }
-        public bool Parmesan { get; set; }
-        public bool Door_blue { get; set; }
-        public bool Brynza { get; }
+        public string Description { get; set; }
     }
 }

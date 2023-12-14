@@ -62,8 +62,8 @@
     position: relative;
     left: 36.7%;
     width: 500px;
-    padding: 100px;
-    margin-top: -80px;
+    padding: 90px;
+    margin-top: -93px;
     border-radius: 30px;
     box-shadow: 0 4px 16px #6C804D;
     background: #F1EB90;
@@ -113,14 +113,19 @@
     outline: none;
     transition: 0,3s;
 }
+{
 
-.form-button {
+}
+
+.form-button-reg {
     padding: 10px 20px;
     border: none;
+    position: relative;
+    left:27%;
     border-radius: 10px;
     color: #F1EB90;
     background-color: #EC8F5E;
-    cursor:pointer;
+    cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
 }
