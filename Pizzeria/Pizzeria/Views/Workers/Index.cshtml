@@ -4,7 +4,7 @@
 }
 
 
-<form method="post" asp-controller="Workers" asp-action="DeleteWorker">
+<form method="post" asp-controller="EditWorker" asp-action="ToEditWorker" name="workerId">
     <table class ="tabel-work" style="width:100%">
         <thead class="thead-work">
             <tr>
@@ -49,7 +49,7 @@
                     </td>
                     <td>
 
-                        <button class="form-button-reg" name="workerId" type="submit" value="@obj.IDWorker">Delete</button>
+                        <button class="form-button-reg" name="workerId" type="submit" value="@obj.IDWorker">Edit</button>
                         
                        
                     </td>
@@ -62,26 +62,4 @@
     </form>
 
 
-                    <script>
-    function deleteWorker(workerId) {
-        if (confirm('Are you sure you want to delete this worker?')) {
-            fetch('@Url.Action("Delete", "Workers")', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'workerId=' + encodeURIComponent(workerId),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // Обработайте успешное удаление здесь
-                        alert('Worker deleted successfully');
-                        // Если нужно обновить данные на странице, добавьте соответствующий код
-                    } else {
-                        // Обработайте ошибку удаления здесь
-                        alert('Failed to delete worker');
-                    }
-                });
-        }
-    }
-</script>
+   

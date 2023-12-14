@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Project\PizzeriaKurs\Pizzeria\Pizzeria
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/EditWorker/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFdvcmtlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/FirstPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlyc3RQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
