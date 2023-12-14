@@ -9,12 +9,10 @@ namespace Pizzeria.Controllers
     {
         private readonly ApplicationDbContext _db;
         static WorkerDbService _workerDbService { get; set; }
-        public ValidService _validService { get; set; }
         public ValidModelService _validModelService { get; set; }
         public EditWorkerController(ApplicationDbContext db)
         {
             _db = db;
-            _validService = new ValidService();
             _workerDbService = new WorkerDbService(_db);
             _validModelService = new ValidModelService();
         }
@@ -40,12 +38,12 @@ namespace Pizzeria.Controllers
                 return View("Index", worker);
             }
             
-               var workerToEdit = _db.Workers.Find(worker.IDWorker);
-                workerToEdit.WorkerName = worker.WorkerName;
-                workerToEdit.WorkerSurname = worker.WorkerSurname;
-                workerToEdit.WorkerPhone = worker.WorkerPhone;
-                workerToEdit.WorkerPost = worker.WorkerPost;
-                workerToEdit.WorkerEmail = worker.WorkerEmail;
+            var workerToEdit = _db.Workers.Find(worker.IDWorker);
+            workerToEdit.WorkerName = char.ToUpper(worker.WorkerName[0]) + worker.WorkerName.Substring(1); ;
+            workerToEdit.WorkerSurname = char.ToUpper(worker.WorkerSurname[0]) + worker.WorkerSurname.Substring(1);
+            workerToEdit.WorkerPhone = worker.WorkerPhone;
+            workerToEdit.WorkerPost = char.ToUpper(worker.WorkerPost[0]) + worker.WorkerPost.Substring(1);
+            workerToEdit.WorkerEmail = worker.WorkerEmail;
                 _db.SaveChanges();
                 return Redirect("/Workers/Index");
             
@@ -54,25 +52,15 @@ namespace Pizzeria.Controllers
         [HttpPost]
         public IActionResult DeleteWorker(string workerId)
         {
-            if (!string.IsNullOrEmpty(workerId))
-            {
+            
                 var workerToDelete = _db.Workers.Find(workerId);
                 if (workerToDelete != null)
                 {
                     _db.Workers.Remove(workerToDelete);
                     _db.SaveChanges();
                 }
-            }
-            else
-            {
-                // В случае отсутствия работника с указанным ID, возможно, вы захотите вернуть ошибку
-                return BadRequest("Worker not found");
-            }
-
-            // Если deleteAction не задан, выполните другие действия (если необходимо)
-            // ...
-
-            // После выполнения других действий перенаправьтесь обратно на страницу с таблицей
+            
+            
             return Redirect("/Workers/Index");
         }
     }

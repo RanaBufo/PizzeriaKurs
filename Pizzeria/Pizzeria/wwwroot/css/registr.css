@@ -121,7 +121,19 @@
     padding: 10px 20px;
     border: none;
     position: relative;
-    left:7%;
+    left:27%;
+    border-radius: 10px;
+    color: #F1EB90;
+    background-color: #EC8F5E;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.form-button-reg3 {
+    padding: 10px 20px;
+    border: none;
+    position: relative;
+    left: 7%;
     border-radius: 10px;
     color: #F1EB90;
     background-color: #EC8F5E;
