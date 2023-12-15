@@ -7,5 +7,6 @@ namespace Pizzeria.Models
         [Key]
         public string IDSauce { get; set; }
         public string NameSauce { get; set; }
+        public int PriceSause { get; set; }
     }
 }

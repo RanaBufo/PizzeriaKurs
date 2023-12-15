@@ -7,5 +7,6 @@ namespace Pizzeria.Models
         [Key]
         public string IdFilling { get; set; }
         public string NameFilling { get; set; }
+        public int PriceFilling { get; set; }
     }
 }

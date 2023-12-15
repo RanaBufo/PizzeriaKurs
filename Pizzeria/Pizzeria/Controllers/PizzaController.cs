@@ -15,5 +15,18 @@ namespace Pizzeria.Controllers
             IEnumerable<Pizza> objCategoryList = _db.Pizzas;
             return View(objCategoryList);
         }
+        [HttpPost]
+        public IActionResult Delete(string idPizza)
+        {
+            var pizzaToDelete = _db.Pizzas.Find(idPizza);
+            if (pizzaToDelete != null)
+            {
+                _db.Pizzas.Remove(pizzaToDelete);
+                _db.SaveChanges();
+            }
+
+
+            return Redirect("/Pizza/Index");
+        }
     }
 }
