@@ -8,8 +8,9 @@ namespace Pizzeria.Controllers
     {
         private readonly ApplicationDbContext _db;
         public RegistrationInfo registrationInfo { get; set; }
-        public RegistrationService _registrationService { get; set; }
         public ValidModelService _validModelService { get; set; }
+
+        public RegistrationService _registrationService { get; set; }
         public RegistrationController(ApplicationDbContext db)
         {
             _db = db;

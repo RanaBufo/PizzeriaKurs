@@ -41,7 +41,7 @@ namespace Pizzeria.Services
                     modelState.AddModelError("WorkerPost", "The post must adhere to certain rules.");
                     index = false;
                 }
-                if (worker.WorkerPost != null && !_validService.IsValidPassword(worker.WorkerPassword))
+                if (worker.WorkerPassword != null && !_validService.IsValidPassword(worker.WorkerPassword))
                 {
                     modelState.AddModelError("WorkerPost", "Invalid data format");
                     index = false;
