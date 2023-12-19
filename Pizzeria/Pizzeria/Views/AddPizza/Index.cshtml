@@ -27,13 +27,16 @@
     <p>Sause</p>
     @foreach (var sauses in Model.Sauces)
     {
-
-        <div>
+        @if(sauses != "None")
+        {
+            <div>
             <label>
                 <input type="radio" name="souse" value="@sauses" />
                 @sauses
             </label>
         </div>
+        }
+        
     }
 
     <button class="form-button-reg"  type="submit">Add</button>

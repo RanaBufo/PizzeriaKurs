@@ -3,11 +3,10 @@ using Pizzeria.Models;
 
 namespace Pizzeria.Services
 {
-    public class ValidModelService
+    public class ValidModelService : ValidService
     {
-        private ValidService _validService = new ValidService();
 
-        public ValidModelService()
+        public ValidModelService(ApplicationDbContext db):base(db)
         {
             
         }
@@ -16,37 +15,37 @@ namespace Pizzeria.Services
         {
             bool index = true;
             
-                if (worker.WorkerName!= null && !_validService.IsValidName(worker.WorkerName))
+                if (worker.WorkerName!= null && !IsValidName(worker.WorkerName))
                 {
                     modelState.AddModelError("WorkerName", "The name must adhere to certain rules.");
                     index = false;
                 }
-                if (worker.WorkerSurname != null && !_validService.IsValidSurname(worker.WorkerSurname))
+                if (worker.WorkerSurname != null && !IsValidSurname(worker.WorkerSurname))
                 {
                     modelState.AddModelError("WorkerSurname", "The surname must adhere to certain rules.");
                     index = false;
                 }
-                if (worker.WorkerName != null && worker.WorkerPhone != null && !_validService.IsValidPhone(worker.WorkerPhone))
+                if (worker.WorkerPhone != null && worker.WorkerPhone != null && !IsValidPhone(worker.WorkerPhone))
                 {
                     modelState.AddModelError("WorkerPhone", "Invalid data format.");
                     index = false;
                 }
-                if (worker.WorkerEmail != null && !_validService.IsValidEmail(worker.WorkerEmail))
-                {
-                    modelState.AddModelError("WorkerEmail", "Invalid data format.");
-                    index = false;
-                }
-                if (worker.WorkerPost != null && !_validService.IsValidPost(worker.WorkerPost))
+                
+                if (worker.WorkerPost != null && !IsValidPost(worker.WorkerPost))
                 {
                     modelState.AddModelError("WorkerPost", "The post must adhere to certain rules.");
                     index = false;
                 }
-                if (worker.WorkerPassword != null && !_validService.IsValidPassword(worker.WorkerPassword))
+                if (worker.WorkerPassword != null && !IsValidPassword(worker.WorkerPassword))
                 {
                     modelState.AddModelError("WorkerPost", "Invalid data format");
                     index = false;
                 }
-            
+                if (worker.WorkerEmail != null && !IsValidEmail(worker.WorkerEmail))
+                {
+                        modelState.AddModelError("WorkerEmail", "Invalid data format.");
+                        index = false;
+                }
 
 
             return index;
@@ -56,37 +55,61 @@ namespace Pizzeria.Services
         {
             bool index = true;
 
-            if (registrationInfo.WorkerName != null && !_validService.IsValidName(registrationInfo.WorkerName))
+            if (registrationInfo.WorkerName != null && !IsValidName(registrationInfo.WorkerName))
             {
                 modelState.AddModelError("WorkerName", "The name must adhere to certain rules.");
                 index = false;
             }
-            if (registrationInfo.WorkerSurname != null && !_validService.IsValidSurname(registrationInfo.WorkerSurname))
+            if (registrationInfo.WorkerSurname != null && !IsValidSurname(registrationInfo.WorkerSurname))
             {
                 modelState.AddModelError("WorkerSurname", "The surname must adhere to certain rules.");
                 index = false;
             }
-            if (registrationInfo.WorkerName != null && registrationInfo.WorkerPhone != null && !_validService.IsValidPhone(registrationInfo.WorkerPhone))
+            if (registrationInfo.WorkerName != null && registrationInfo.WorkerPhone != null && !IsValidPhone(registrationInfo.WorkerPhone))
             {
-                modelState.AddModelError("WorkerPhone", "Invalid data format.");
-                index = false;
+                if (IsValidPhone(registrationInfo.WorkerPhone))
+                {
+                    foreach (Worker worker in _db.Workers)
+                    {
+                        if (worker.WorkerPhone == registrationInfo.WorkerPhone) { modelState.AddModelError("WorkerPhone", "This phone is already in use."); index = false; }
+                    }
+                    index = true;
+                }
+                else
+                {
+                    modelState.AddModelError("WorkerPhone", "Invalid data format.");
+                                    index = false;
+                }
+                
             }
-            if (registrationInfo.WorkerEmail != null && !_validService.IsValidEmail(registrationInfo.WorkerEmail))
+            if (registrationInfo.WorkerEmail != null )
             {
+                if (IsValidEmail(registrationInfo.WorkerEmail))
+                {
+                    foreach (Worker worker in _db.Workers)
+                    {
+                        if (worker.WorkerEmail == registrationInfo.WorkerEmail) { modelState.AddModelError("WorkerEmail", "This email is already in use."); index = false; }
+                    }
+                    index = true;
+                }
+                else
+                {
                 modelState.AddModelError("WorkerEmail", "Invalid data format.");
                 index = false;
+                }
+                
             }
-            if (registrationInfo.WorkerPost != null && !_validService.IsValidPost(registrationInfo.WorkerPost))
+            if (registrationInfo.WorkerPost != null && !IsValidPost(registrationInfo.WorkerPost))
             {
                 modelState.AddModelError("WorkerPost", "The post must adhere to certain rules.");
                 index = false;
             }
-            if (registrationInfo.WorkerPost != null && !_validService.IsValidPassword(registrationInfo.WorkerPassword))
+            if (registrationInfo.WorkerPassword != null && !IsValidPassword(registrationInfo.WorkerPassword))
             {
-                modelState.AddModelError("WorkerPost", "Invalid data format");
+                modelState.AddModelError("WorkerPassword", "Invalid data format");
                 index = false;
             }
-            if (!_validService.IsValidPassword(registrationInfo.WorkerDuplicatePassword))
+            if (!IsValidDuplicatePassword(registrationInfo.WorkerDuplicatePassword, registrationInfo.WorkerPassword))
             {
                 modelState.AddModelError("WorkerDuplicatePassword", "Passwords do not match.");
                 index = false;

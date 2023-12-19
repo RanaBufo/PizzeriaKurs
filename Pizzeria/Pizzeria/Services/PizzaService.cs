@@ -1,4 +1,5 @@
 ﻿using Pizzeria.Models;
+using System.Text.RegularExpressions;
 
 namespace Pizzeria.Services
 {
@@ -8,14 +9,24 @@ namespace Pizzeria.Services
         public PizzaService(ApplicationDbContext db) { _db = db; }
         public string FindIdPizza()
         {
-            List<Pizza> pizas = _db.Pizzas.ToList();
-            string maxId;
-            if (pizas.Count > 0)
+            List<Pizza> pizzas = _db.Pizzas.ToList();
+            if (pizzas.Count > 0)
             {
-                maxId = "Piz" + (int.Parse(pizas[^1].IDPizza.Substring(3)) + 1).ToString();
+
+                var numbers = pizzas
+            .Select(p => Regex.Match(p.IDPizza, @"\d+"))
+            .Where(match => match.Success)
+            .Select(match => int.Parse(match.Value));
+
+                // Находим максимальное число
+                int maxNumber = numbers.DefaultIfEmpty().Max();
+
+                // Составляем новый ID
+                string nextId = "PIZ" + (maxNumber + 1);
+
+                return nextId;
             }
-            else maxId = "WR1";
-            return maxId;
+            return "PIZ1";
         } 
         public void AddPizza(PizzaAddModel ppizzaAddModel, List<string> SlectedFillings, List<string> SSouse)
         {
@@ -43,6 +54,10 @@ namespace Pizzeria.Services
                 ppizzaAddModel.PizzaPrice += _filling.PriceSause;
                 id = _filling.IDSauce;
                 break;
+            }
+            if (SSouse.Count == 0) 
+            {
+                id = "So0";
             }
             if (ppizzaAddModel.PizzaImage == null)
             {

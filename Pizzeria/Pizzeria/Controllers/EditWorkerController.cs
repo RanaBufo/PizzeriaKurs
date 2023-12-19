@@ -14,7 +14,7 @@ namespace Pizzeria.Controllers
         {
             _db = db;
             _workerDbService = new WorkerDbService(_db);
-            _validModelService = new ValidModelService();
+            _validModelService = new ValidModelService(db);
         }
         public IActionResult Index()
         {

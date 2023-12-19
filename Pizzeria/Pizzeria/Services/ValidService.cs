@@ -5,9 +5,10 @@ namespace Pizzeria.Services
 {
     public class ValidService
     {
-        public ValidService()
+        public readonly ApplicationDbContext _db;
+        public ValidService(ApplicationDbContext db)
         {
-           
+           _db = db;
         }
 
         public bool IsValidName(string name)
@@ -43,12 +44,16 @@ namespace Pizzeria.Services
         }
         public bool IsValidEmail(string email)
         {
-            string pattern = "^[\\w\\.-]+@[a-zA-Z\\d\\.-]+\\.[a-zA-Z]{2,}$\r\n";
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-            if (email != null && email.IndexOf('@') != 0)
+            
+            if (email != null)
             {
-                return true;
+                // Используем Regex.IsMatch для проверки соответствия email регулярному выражению
+                return Regex.IsMatch(email, pattern);
             }
+
+            // Если email равен null, считаем его недопустимым
             return false;
         }
         public bool IsValidPost(string post)

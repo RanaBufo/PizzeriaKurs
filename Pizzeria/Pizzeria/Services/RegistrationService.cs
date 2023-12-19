@@ -1,4 +1,5 @@
 ﻿using Pizzeria.Models;
+using System.Text.RegularExpressions;
 
 namespace Pizzeria.Services
 {
@@ -13,13 +14,24 @@ namespace Pizzeria.Services
         public string FindIdWorker()
         {
             List<Worker> workers = _db.Workers.ToList();
-            string maxId;
             if (workers.Count > 0)
             {
-                maxId = "WR" + (int.Parse(workers[^1].IDWorker.Substring(2)) + 1).ToString();
+
+                var numbers = workers
+            .Select(w => Regex.Match(w.IDWorker, @"\d+"))
+            .Where(match => match.Success)
+            .Select(match => int.Parse(match.Value));
+
+                // Находим максимальное число
+                int maxNumber = numbers.DefaultIfEmpty().Max();
+
+                // Составляем новый ID
+                string nextId = "WR" + (maxNumber + 1);
+
+                return nextId;
             }
-            else  maxId = "WR1";
-            return maxId;
+              return "WR1";
+            
         }
 
         public void AddWorker(RegistrationInfo registrationInfo)
