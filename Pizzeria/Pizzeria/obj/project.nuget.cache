@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbH4KlaDdJl3FGXr+g9GhnPu0wgiDzq/wsYYL6zifTOqNsaSpiwfOqSs5Q0l/GH/MoonWOk8DmQ905w0Js5Kbg==",
+  "dgSpecHash": "wI/kNhOT8XA+q0K35am73LseZdkZ/2J/EDPoDmUmj5yIOScTcuzux4HL4nvvrB+MtHQJMPSUqG06Nl8MP1bS9A==",
   "success": true,
-  "projectFilePath": "D:\\Project\\PizzeriaKurs\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
+  "projectFilePath": "D:\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GuraL\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\GuraL\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

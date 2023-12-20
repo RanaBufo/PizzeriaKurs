@@ -7999,11 +7999,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\PizzeriaKurs\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
+      "projectUniqueName": "D:\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
       "projectName": "Pizzeria",
-      "projectPath": "D:\\Project\\PizzeriaKurs\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
+      "projectPath": "D:\\Pizzeria\\Pizzeria\\Pizzeria.csproj",
       "packagesPath": "C:\\Users\\GuraL\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\PizzeriaKurs\\Pizzeria\\Pizzeria\\obj\\",
+      "outputPath": "D:\\Pizzeria\\Pizzeria\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programm\\VS\\Other\\NuGetPackages"
