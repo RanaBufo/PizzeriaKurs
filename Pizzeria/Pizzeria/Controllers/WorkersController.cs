@@ -8,16 +8,29 @@ namespace Pizzeria.Controllers
     public class WorkersController : Controller
     {
         private readonly ApplicationDbContext _db;
+        public AllWorker<Worker> allWorker;
 
         public WorkersController(ApplicationDbContext db)
         {
+            allWorker = new AllWorker<Worker>();
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Worker> objCategoryList = _db.Workers;
-            return View(objCategoryList);
+            foreach(Cocker cockers in _db.Cockers)
+            {
+                allWorker.Add(cockers);
+            }
+            foreach (Director derector in _db.Derectors)
+            {
+                allWorker.Add(derector);
+            }
+            foreach (Manager manager in _db.Managers)
+            {
+                allWorker.Add(manager);
+            }
+            return View(allWorker);
         }
 
         

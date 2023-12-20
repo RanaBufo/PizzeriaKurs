@@ -14,8 +14,6 @@ namespace Pizzeria.Models
         public string WorkerPhone { get; set; }
         [Required(ErrorMessage = "Password is required")]
         public string WorkerPassword { get; set; }
-        [Required(ErrorMessage = "Post is required")]
-        public string WorkerPost { get; set; }
         [Required(ErrorMessage = "Duplicate Password is required")]
         public string WorkerDuplicatePassword { get; set; }
     }

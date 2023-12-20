@@ -42,7 +42,7 @@ namespace Pizzeria.Controllers
             workerToEdit.WorkerName = char.ToUpper(worker.WorkerName[0]) + worker.WorkerName.Substring(1); ;
             workerToEdit.WorkerSurname = char.ToUpper(worker.WorkerSurname[0]) + worker.WorkerSurname.Substring(1);
             workerToEdit.WorkerPhone = worker.WorkerPhone;
-            workerToEdit.WorkerPost = char.ToUpper(worker.WorkerPost[0]) + worker.WorkerPost.Substring(1);
+            //workerToEdit.WorkerPost = char.ToUpper(worker.WorkerPost[0]) + worker.WorkerPost.Substring(1);
             workerToEdit.WorkerEmail = worker.WorkerEmail;
                 _db.SaveChanges();
                 return Redirect("/Workers/Index");

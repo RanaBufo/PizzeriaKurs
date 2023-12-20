@@ -58,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Lalala/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFsYWxhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,6 +72,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Registration/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Registration/NewCock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXE5ld0NvY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Registration/NewDirector.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXE5ld0RpcmVjdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Registration/NewManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXE5ld01hbmFnZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/PizzeriaKurs/Pizzeria/Pizzeria/Views/Shared/Error.cshtml]

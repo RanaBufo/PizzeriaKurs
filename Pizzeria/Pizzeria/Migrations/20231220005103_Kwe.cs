@@ -5,7 +5,7 @@
 namespace Pizzeria.Migrations
 {
     /// <inheritdoc />
-    public partial class PizzaPizq1112wdfgrt : Migration
+    public partial class Kwe : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace Pizzeria.Migrations
                 columns: table => new
                 {
                     IdFilling = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    NameFilling = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameFilling = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PriceFilling = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +44,8 @@ namespace Pizzeria.Migrations
                 columns: table => new
                 {
                     IDSauce = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    NameSauce = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameSauce = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PriceSause = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,12 +77,69 @@ namespace Pizzeria.Migrations
                     WorkerSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WorkerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WorkerPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkerPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkerPost = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    WorkerPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Workers", x => x.IDWorker);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cockers",
+                columns: table => new
+                {
+                    IDWorker = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExperienceYears = table.Column<int>(type: "int", nullable: false),
+                    HasFoodSafetyTraining = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cockers", x => x.IDWorker);
+                    table.ForeignKey(
+                        name: "FK_Cockers_Workers_IDWorker",
+                        column: x => x.IDWorker,
+                        principalTable: "Workers",
+                        principalColumn: "IDWorker",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Directors",
+                columns: table => new
+                {
+                    IDWorker = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasLeadershipExperience = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Directors", x => x.IDWorker);
+                    table.ForeignKey(
+                        name: "FK_Directors_Workers_IDWorker",
+                        column: x => x.IDWorker,
+                        principalTable: "Workers",
+                        principalColumn: "IDWorker",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Managers",
+                columns: table => new
+                {
+                    IDWorker = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HasLeadershipTraining = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Managers", x => x.IDWorker);
+                    table.ForeignKey(
+                        name: "FK_Managers_Workers_IDWorker",
+                        column: x => x.IDWorker,
+                        principalTable: "Workers",
+                        principalColumn: "IDWorker",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
@@ -88,7 +147,16 @@ namespace Pizzeria.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Cockers");
+
+            migrationBuilder.DropTable(
+                name: "Directors");
+
+            migrationBuilder.DropTable(
                 name: "Fillings");
+
+            migrationBuilder.DropTable(
+                name: "Managers");
 
             migrationBuilder.DropTable(
                 name: "Pizzas");

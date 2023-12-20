@@ -31,11 +31,11 @@ namespace Pizzeria.Services
                     index = false;
                 }
                 
-                if (worker.WorkerPost != null && !IsValidPost(worker.WorkerPost))
+               /* if (worker.WorkerPost != null && !IsValidPost(worker.WorkerPost))
                 {
                     modelState.AddModelError("WorkerPost", "The post must adhere to certain rules.");
                     index = false;
-                }
+                }*/
                 if (worker.WorkerPassword != null && !IsValidPassword(worker.WorkerPassword))
                 {
                     modelState.AddModelError("WorkerPost", "Invalid data format");
@@ -65,15 +65,16 @@ namespace Pizzeria.Services
                 modelState.AddModelError("WorkerSurname", "The surname must adhere to certain rules.");
                 index = false;
             }
-            if (registrationInfo.WorkerName != null && registrationInfo.WorkerPhone != null && !IsValidPhone(registrationInfo.WorkerPhone))
+            if (registrationInfo.WorkerPhone != null)
             {
                 if (IsValidPhone(registrationInfo.WorkerPhone))
                 {
                     foreach (Worker worker in _db.Workers)
                     {
-                        if (worker.WorkerPhone == registrationInfo.WorkerPhone) { modelState.AddModelError("WorkerPhone", "This phone is already in use."); index = false; }
+                        if (worker.WorkerPhone == registrationInfo.WorkerPhone) { modelState.AddModelError("WorkerPhone", "This phone is already in use."); index = false; break; }
+                        else index = true;
                     }
-                    index = true;
+                    
                 }
                 else
                 {
@@ -88,22 +89,18 @@ namespace Pizzeria.Services
                 {
                     foreach (Worker worker in _db.Workers)
                     {
-                        if (worker.WorkerEmail == registrationInfo.WorkerEmail) { modelState.AddModelError("WorkerEmail", "This email is already in use."); index = false; }
+                        if (worker.WorkerEmail == registrationInfo.WorkerEmail) { modelState.AddModelError("WorkerEmail", "This email is already in use."); index = false; break; }
+                        else index = true;
                     }
-                    index = true;
                 }
                 else
                 {
-                modelState.AddModelError("WorkerEmail", "Invalid data format.");
-                index = false;
+                    modelState.AddModelError("WorkerEmail", "Invalid data format.");
+                    index = false;
                 }
                 
             }
-            if (registrationInfo.WorkerPost != null && !IsValidPost(registrationInfo.WorkerPost))
-            {
-                modelState.AddModelError("WorkerPost", "The post must adhere to certain rules.");
-                index = false;
-            }
+            
             if (registrationInfo.WorkerPassword != null && !IsValidPassword(registrationInfo.WorkerPassword))
             {
                 modelState.AddModelError("WorkerPassword", "Invalid data format");

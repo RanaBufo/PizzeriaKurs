@@ -40,10 +40,26 @@
         <label for="mail" class="form-label">E-mail</label>
         @Html.ValidationMessageFor(model => model.WorkerEmail)
     </div>
-    <div class="form-group">
-        <input type="text" asp-for="WorkerPost" class="form-input" id="workpost" placeholder=" " />
-        <label for="workpost" class="form-label">Post</label>
-        @Html.ValidationMessageFor(model => model.WorkerPost)
+    <p>
+        Post
+    </p>
+    <div>
+        <label>
+            <input type="radio" name="post" value="Cock" />
+            @Html.Raw("Cock")
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="post" value="Manager" />
+            @Html.Raw("Manager")
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="radio" name="post" value="Director" />
+            @Html.Raw("Director")
+        </label>
     </div>
     <div class="form-group">
         <input type="password" asp-for="WorkerPassword" class="form-input" id="password" placeholder=" " />

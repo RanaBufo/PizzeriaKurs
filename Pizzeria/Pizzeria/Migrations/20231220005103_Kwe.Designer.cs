@@ -11,8 +11,8 @@ using Pizzeria;
 namespace Pizzeria.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231213165124_PizzaPizq1112wdfgrt")]
-    partial class PizzaPizq1112wdfgrt
+    [Migration("20231220005103_Kwe")]
+    partial class Kwe
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Pizzeria.Migrations
                     b.Property<string>("NameFilling")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PriceFilling")
+                        .HasColumnType("int");
 
                     b.HasKey("IdFilling");
 
@@ -75,6 +78,9 @@ namespace Pizzeria.Migrations
                     b.Property<string>("NameSauce")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PriceSause")
+                        .HasColumnType("int");
 
                     b.HasKey("IDSauce");
 
@@ -132,10 +138,6 @@ namespace Pizzeria.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WorkerPost")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("WorkerSurname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -143,6 +145,80 @@ namespace Pizzeria.Migrations
                     b.HasKey("IDWorker");
 
                     b.ToTable("Workers");
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Cocker", b =>
+                {
+                    b.HasBaseType("Pizzeria.Models.Worker");
+
+                    b.Property<int>("ExperienceYears")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("HasFoodSafetyTraining")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Cockers");
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Director", b =>
+                {
+                    b.HasBaseType("Pizzeria.Models.Worker");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasLeadershipExperience")
+                        .HasColumnType("bit");
+
+                    b.ToTable("Directors");
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Manager", b =>
+                {
+                    b.HasBaseType("Pizzeria.Models.Worker");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasLeadershipTraining")
+                        .HasColumnType("bit");
+
+                    b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Cocker", b =>
+                {
+                    b.HasOne("Pizzeria.Models.Worker", null)
+                        .WithOne()
+                        .HasForeignKey("Pizzeria.Models.Cocker", "IDWorker")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Director", b =>
+                {
+                    b.HasOne("Pizzeria.Models.Worker", null)
+                        .WithOne()
+                        .HasForeignKey("Pizzeria.Models.Director", "IDWorker")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pizzeria.Models.Manager", b =>
+                {
+                    b.HasOne("Pizzeria.Models.Worker", null)
+                        .WithOne()
+                        .HasForeignKey("Pizzeria.Models.Manager", "IDWorker")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

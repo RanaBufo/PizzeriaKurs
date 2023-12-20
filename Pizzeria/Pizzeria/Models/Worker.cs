@@ -11,6 +11,5 @@ namespace Pizzeria.Models
         public string WorkerEmail { get; set; }
         public string WorkerPhone { get; set; }
         public string WorkerPassword { get; set; }
-        public string WorkerPost { get; set; }
     }
 }

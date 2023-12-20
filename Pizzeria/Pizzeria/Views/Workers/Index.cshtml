@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Worker>
+﻿@model Pizzeria.Models.AllWorker<Pizzeria.Models.Worker>
 @{
     ViewData["Title"] = "Worker";
 }
@@ -39,7 +39,18 @@
                         @obj.WorkerSurname
                     </td>
                     <td class="td-worker">
-                        @obj.WorkerPost
+                        @if (obj.IDWorker.StartsWith("CoK", StringComparison.OrdinalIgnoreCase))
+                        {
+                            @Html.Raw("Cock")
+                        }
+                        else if (obj.IDWorker.StartsWith("Man", StringComparison.OrdinalIgnoreCase))
+                        {
+                            @Html.Raw("Manager")
+                        }
+                        else
+                        {
+                            @Html.Raw("Director")
+                        }
                     </td>
                     <td class="td-worker">
                         @obj.WorkerEmail
@@ -47,6 +58,7 @@
                     <td class="td-worker">
                         @obj.WorkerPhone
                     </td>
+                    
                     <td>
 
                         <button class="form-button-reg" name="workerId" type="submit" value="@obj.IDWorker">Edit</button>
